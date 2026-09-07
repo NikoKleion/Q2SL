@@ -1,0 +1,30 @@
+1. SAMPLING ERROR ON THE MEASURED DISTANCE
+   bootstrap: resample both distributions at the shot count and recompute
+
+   delay    0.0 us: measured 0.0140  bootstrap SE 0.0031
+   delay   20.0 us: measured 0.3412  bootstrap SE 0.0082
+   delay   50.0 us: measured 0.5888  bootstrap SE 0.0082
+   delay  100.0 us: measured 0.7110  bootstrap SE 0.0074
+
+2. NULL FLOOR
+   two independent samples from ONE distribution still give a nonzero distance
+
+   null mean 0.0052, 95th pct 0.0100, max 0.0190
+   measured zero-delay distance 0.0140  ->  2.7x the null mean
+   p(null >= measured) = 0.0047
+
+3. FIT T1 FROM THE LEAK, COMPARE TO THE DEVICE VALUE
+   model: measured = a * simulated(gamma(t, T1)), fitted on the nonzero delays
+
+   fitted T1           138.5 us
+   device median T1    133.2 us
+   ratio               1.040
+   attenuation a       0.945   (1.0 = no readout blurring)
+   rms residual       0.0089
+
+4. MEASURED vs SIMULATED AT THE DEVICE T1
+
+    delay us   measured   +/-SE   simulated     diff   ratio
+        20.0     0.3412  0.0082      0.3600  -0.0187   0.948
+        50.0     0.5888  0.0082      0.6451  -0.0563   0.913
+       100.0     0.7110  0.0074      0.7476  -0.0366   0.951

@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "q2sl"
+version = "1.2.0"
+description = "QEC Syndrome Stabilizer Leakage: what a stabilizer code's syndrome reveals about the encoded logical state, with reconstruction hardness"
+readme = "README.md"
+license = {file = "LICENSE.md"}
+requires-python = ">=3.11"
+dependencies = ["numpy>=1.24"]
+keywords = ["quantum", "quantum-computing", "quantum-error-correction", "cryptography", "side-channel",
+            "syndrome", "qiskit"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: Other/Proprietary License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Security :: Cryptography",
+    "Topic :: Scientific/Engineering :: Physics",
+]
+
+[project.optional-dependencies]
+wasserstein = ["scipy"]
+zx = ["pyzx"]
+hardware = ["qiskit", "qiskit-aer", "qiskit-ibm-runtime"]
+reconstruction = ["torch", "ldpc"]
+plots = ["matplotlib"]
+dev = ["pytest"]
+full = ["scipy", "pyzx", "qiskit", "qiskit-aer", "qiskit-ibm-runtime", "torch", "ldpc", "matplotlib", "pytest"]
+
+[project.scripts]
+q2sl = "q2sl:main"
+
+[tool.setuptools]
+packages = ["syndrome_leakage", "entropy_fusion", "suite", "reconstruction"]
+py-modules = ["q2sl"]
+
+[tool.setuptools.package-data]
+reconstruction = ["models/*.pt"]
